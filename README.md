@@ -1,25 +1,31 @@
 # lein-db
 
-A Leiningen plugin to do many wonderful things.
+A Leiningen plugin to manage common project database tasks, such as dropping tables and seeding data.
+No implementation is provided for migrations or seed data at this time, just the infrastructure to call
+those tasks from leiningen. I'm planning to expand the plugin to also provide those features at some point.
+If you need a complete solution, please have a look at Drift: https://github.com/macourtney/drift
 
 ## Usage
 
-FIXME: Use this for user-level plugins:
+Add `[lein-db "0.1.0"]` into the `:plugins` vector of your project.clj. Add a leindb.clj file at the root
+of your classpath. The content of leindb.clj should look like this:
 
-Put `[lein-db "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your
-`:user` profile, or if you are on Leiningen 1.x do `lein plugin install
-lein-db 0.1.0-SNAPSHOT`.
+    (ns leindb)
 
-FIXME: Use this for project-level plugins:
+    (defn drop-tables [])
+    (defn migrate [])
+    (defn seed [])
 
-Put `[lein-db "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your project.clj.
+provide the implementation for the three functions migrate, drop-tables and seed. Then invoke them from
+the command line like this:
 
-FIXME: and add an example usage that actually makes sense:
-
-    $ lein db
+    $ lein db               # With no arguments, execute migrate, drop-tables, seed in a sequence
+    $ lein drop-tables      # Executes drop-tables
+    $ lein migrate          # Executes migrate
+    $ lein seed             # Executes seed
 
 ## License
 
-Copyright © 2012 FIXME
+Copyright © 2012 Reborg
 
 Distributed under the Eclipse Public License, the same as Clojure.
