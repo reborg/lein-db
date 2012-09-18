@@ -23,9 +23,9 @@ provide the implementation for the three functions migrate, drop-tables and seed
 the command line like this:
 
     $ lein db               # With no arguments, execute migrate, drop-tables, seed in a sequence
-    $ lein drop-tables      # Executes drop-tables
-    $ lein migrate          # Executes migrate
-    $ lein seed             # Executes seed
+    $ lein db drop-tables      # Executes drop-tables
+    $ lein db migrate          # Executes migrate
+    $ lein db seed             # Executes seed
 
 ## License
 
